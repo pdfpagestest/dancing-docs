@@ -1,3 +1,4 @@
+name: Update PDF on Schedule
 on:
   schedule:
     - cron: "*/10 13-23 * * 1-5"
