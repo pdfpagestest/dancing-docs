@@ -18,7 +18,8 @@ jobs:
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           FILE="pdfs/changing.pdf"
 
-          cat > "$FILE" <<EOF
+          # Write the first part of the PDF
+          cat > "$FILE" << 'EOF'
 %PDF-1.4
 1 0 obj
 << /Type /Catalog /Pages 2 0 R >>
@@ -35,7 +36,13 @@ stream
 BT
 /F1 24 Tf
 100 700 Td
-(${TS}) Tj
+EOF
+
+          # Insert timestamp line
+          echo "(${TS}) Tj" >> "$FILE"
+
+          # Finish the PDF
+          cat >> "$FILE" << 'EOF'
 ET
 endstream
 endobj
