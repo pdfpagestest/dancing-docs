@@ -18,7 +18,6 @@ jobs:
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           FILE="pdfs/changing.pdf"
 
-          # Write the first part of the PDF
           cat > "$FILE" << 'EOF'
 %PDF-1.4
 1 0 obj
@@ -38,10 +37,8 @@ BT
 100 700 Td
 EOF
 
-          # Insert timestamp line
           echo "(${TS}) Tj" >> "$FILE"
 
-          # Finish the PDF
           cat >> "$FILE" << 'EOF'
 ET
 endstream
