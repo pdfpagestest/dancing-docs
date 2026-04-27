@@ -57,6 +57,7 @@ jobs:
           echo "startxref" >> "$FILE"
           echo "450" >> "$FILE"
           echo "%%EOF" >> "$FILE"
+          # force cron
 
       - name: Commit and push updated PDF
         run: |
