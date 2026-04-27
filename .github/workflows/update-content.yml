@@ -18,8 +18,11 @@ jobs:
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           FILE="pdfs/changing.pdf"
 
-          cat > "$FILE" << 'EOF'
-%PDF-1.4
+          # Start PDF manually so YAML never sees %PDF-1.4
+          echo "%PDF-1.4" > "$FILE"
+
+          # First heredoc block
+          cat >> "$FILE" << 'EOF'
 1 0 obj
 << /Type /Catalog /Pages 2 0 R >>
 endobj
@@ -37,8 +40,10 @@ BT
 100 700 Td
 EOF
 
+          # Insert timestamp
           echo "(${TS}) Tj" >> "$FILE"
 
+          # Second heredoc block
           cat >> "$FILE" << 'EOF'
 ET
 endstream
