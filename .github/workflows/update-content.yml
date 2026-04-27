@@ -18,53 +18,42 @@ jobs:
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           FILE="pdfs/changing.pdf"
 
-          # Start PDF manually so YAML never sees %PDF-1.4
           echo "%PDF-1.4" > "$FILE"
-
-          # First heredoc block
-          cat >> "$FILE" << 'EOF'
-1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
-endobj
-2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
-endobj
-3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
-endobj
-4 0 obj
-<< /Length 60 >>
-stream
-BT
-/F1 24 Tf
-100 700 Td
-EOF
-
-          # Insert timestamp
+          echo "1 0 obj" >> "$FILE"
+          echo "<< /Type /Catalog /Pages 2 0 R >>" >> "$FILE"
+          echo "endobj" >> "$FILE"
+          echo "2 0 obj" >> "$FILE"
+          echo "<< /Type /Pages /Kids [3 0 R] /Count 1 >>" >> "$FILE"
+          echo "endobj" >> "$FILE"
+          echo "3 0 obj" >> "$FILE"
+          echo "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>" >> "$FILE"
+          echo "endobj" >> "$FILE"
+          echo "4 0 obj" >> "$FILE"
+          echo "<< /Length 60 >>" >> "$FILE"
+          echo "stream" >> "$FILE"
+          echo "BT" >> "$FILE"
+          echo "/F1 24 Tf" >> "$FILE"
+          echo "100 700 Td" >> "$FILE"
           echo "(${TS}) Tj" >> "$FILE"
-
-          # Second heredoc block
-          cat >> "$FILE" << 'EOF'
-ET
-endstream
-endobj
-5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
-endobj
-xref
-0 6
-0000000000 65535 f 
-0000000010 00000 n 
-0000000060 00000 n 
-0000000115 00000 n 
-0000000270 00000 n 
-0000000370 00000 n 
-trailer
-<< /Size 6 /Root 1 0 R >>
-startxref
-450
-%%EOF
-EOF
+          echo "ET" >> "$FILE"
+          echo "endstream" >> "$FILE"
+          echo "endobj" >> "$FILE"
+          echo "5 0 obj" >> "$FILE"
+          echo "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>" >> "$FILE"
+          echo "endobj" >> "$FILE"
+          echo "xref" >> "$FILE"
+          echo "0 6" >> "$FILE"
+          echo "0000000000 65535 f " >> "$FILE"
+          echo "0000000010 00000 n " >> "$FILE"
+          echo "0000000060 00000 n " >> "$FILE"
+          echo "0000000115 00000 n " >> "$FILE"
+          echo "0000000270 00000 n " >> "$FILE"
+          echo "0000000370 00000 n " >> "$FILE"
+          echo "trailer" >> "$FILE"
+          echo "<< /Size 6 /Root 1 0 R >>" >> "$FILE"
+          echo "startxref" >> "$FILE"
+          echo "450" >> "$FILE"
+          echo "%%EOF" >> "$FILE"
 
       - name: Commit and push updated PDF
         run: |
