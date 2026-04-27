@@ -1,10 +1,11 @@
-name: Update changing.pdf Every 10 Minutes (Weekdays 9–21)
-
 on:
   schedule:
-    - cron: "*/10 13-23 * * 1-5"   # 9 AM–7 PM EDT
-    - cron: "*/10 0 * * 2-6"       # 8 PM–9 PM EDT (UTC next day hour 0)
+    - cron: "*/10 13-23 * * 1-5"
+    - cron: "*/10 0 * * 2-6"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   generate:
