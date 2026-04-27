@@ -1,0 +1,2 @@
+This is not a valid PDF file.
+It returns 200 OK but cannot be parsed as PDF.
